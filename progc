@@ -1,1 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+// Structure pour représenter une étape de trajet
+typedef struct {
+    int trajet_id;
+    int etape_id;
+    char ville_depart[50];
+    char ville_arrivee[50];
+    float distance;
+    char conducteur[100];
+} Etape;
+
+// Prototypes de fonctions pour le traitement des données
+void lireFichierCSV(const char *nomFichier);
+void traiterDonnees(Etape *etapes, int nombreEtapes);
+void genererResultat(Etape *etapes, int nombreEtapes);
+
+int main(int argc, char **argv) {
+    // Vérification des arguments
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <fichier_csv>\n", argv[0]);
+        return 1;
+    }
+
+    // Lecture du fichier CSV
+    lireFichierCSV(argv[1]);
+
+    // Ajoutez ici plus de logique selon les besoins
+    // ...
+
+    return 0;
+}
+
+// Fonction pour lire un fichier CSV
+void lireFichierCSV(const char *nomFichier) {
+    FILE *file = fopen(nomFichier, "r");
+    if (file == NULL) {
+        perror("Erreur en ouvrant le fichier");
+        exit(EXIT_FAILURE);
+    }
+
+    Etape etape;
+    // Exemple de lecture de fichier CSV
+    while (fscanf(file, "%d,%d,%[^,],%[^,],%f,%[^\n]",
+                  &etape.trajet_id, &etape.etape_id, etape.ville_depart,
+                  etape.ville_arrivee, &etape.distance, etape.conducteur) != EOF) {
+        // Traiter chaque ligne ici
+        // ...
+    }
+
+    fclose(file);
+}
+
+// Fonction pour traiter les données lues du CSV
+void traiterDonnees(Etape *etapes, int nombreEtapes) {
+    // Implémentez votre logique de traitement ici
+    // ...
+}
+
+// Fonction pour générer les résultats du traitement
+void genererResultat(Etape *etapes, int nombreEtapes) {
+    // Implémentez la génération de vos résultats ici
+    // ...
+}
